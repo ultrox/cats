@@ -12,14 +12,29 @@
   <div id='main'></div>
 
   <script id='tem' type="text/template" data-template='cat'>
+    <h3>{catname}</h3>
     <div class="cat" id="cat1" data-id="{id}">
       <span class="counter">{{cliks}}</span> clicks
       <br>
-      <img class="clicker" src="{{image}}">
+      <img id="clicker" src="{{image}}">
+      <br>
+      <input id='admin' type="button" value="Admin">
     </div>
   </script>
+
+  <form id='adminControls'>
+    <label for='catName'>Cat Name</label>
+    <input name='catName'>
+    <label for='catImage'>Cat Image</label>
+    <input name='catImage'>
+    <label for='catClicks'>Clicks</label>
+    <input name='catClicks'>
+    <input id='save' type="button" value='Save'>
+    <input id='cancel' type="button" value='Cancel'>
+  </form>
+  <script src="jquery.js"></script>
+  <script src="app1.js"></script>
 </body>
 
+
 </html>
-<script src="jquery.js"></script>
-<script src="app1.js"></script>
