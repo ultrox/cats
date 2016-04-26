@@ -1,4 +1,5 @@
 $(function () {
+<<<<<<< HEAD
   model = {
     curentCat: null,
     renderAdmin: false,
@@ -166,4 +167,7 @@ $(function () {
       } //render end
   };
   octopus.init();
+=======
+  window.CatApp.octopus.init();
+>>>>>>> pr/1
 }());

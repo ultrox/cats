@@ -1,0 +1,24 @@
+Dodati admin button u moj templejt
+Event listner click da stvori novi div sa edit formom
+
+Admin Area: Treba imati:
+              3 input forma(Name,ImgUrl i clicks) koristi label za imena;
+              Save i Cancel button(html) click events
+              
+              funkcija SAVE: kad se stisne save updejtovati model 
+              kroz oktopus i DOM(render) i sakriti admin mode div
+              
+              Funkcija CANCEL: remove new div ADMIN area
+              
+              
+Add property u model da li se ili ne admin mode pokazuje
+podesi sa oktopusom da li je true/false i na osnovu toga view ce renderovati to ili ne.
+
+
+u admim view u init: dodati evenlistners za svu dugmad
+
+
+oktopus:
+Funkciju za otvaranje adminView kad se stisne admin button
+funkciju za zatvaranje adminView-a
+funkciju za updejtovanje 'trenutne' macke
