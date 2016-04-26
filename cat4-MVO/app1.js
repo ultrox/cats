@@ -1,5 +1,5 @@
 $(function () {
-  var model = {
+  model = {
     curentCat: null,
     renderAdmin: false,
     cat_images: 'cat_picture',
@@ -55,7 +55,7 @@ $(function () {
     getAllCats: function () {
       return model.cats;
     },
-    openAdminView: function (catId) {
+    openAdminView: function () {
       //object of cat from model actually
       var cat = octopus.getCurentCat();
 
@@ -63,21 +63,18 @@ $(function () {
       this.elements = this.control[0].elements;
 
       this.elements.catName.value = cat.name;
-      this.elements.catImage.value = 'cat_picture' + catId;
+      this.elements.catImage.value = cat.img;
       this.elements.catClicks.value = cat.click;
 
-      this.display = this.control[0].style.display;
-      if (this.display === 'none') {
-        this.control.show();
-      } else {
-        this.control.hide();
-      }
+      this.control.show();
+
+      model.renderAdmin = true;
     },
     closeAdminView: function () {
       //ne treba referenca na cat jer admin mora biti otvoren
       this.control[0].reset();
-      console.log('fuck your life');
       this.control.hide();
+      model.renderAdmin = false;
     },
     updateAdminCat: function () {
       var elements = adminView.adminControl[0].elements;
@@ -88,6 +85,12 @@ $(function () {
       cat.img = elements.catImage.value;
 
       view.renderCat();
+    },
+    showAdmin: function () {
+      if (model.renderAdmin) {
+        octopus.openAdminView();
+        console.log('im ready');
+      }
     }
   };
   var adminView = {
@@ -148,18 +151,19 @@ $(function () {
       this.renderCat();
     },
     renderCat: function () {
-
-      this.main.html('');
-      //this piece of code renders new cats every time event triggers
-      var curentCat = octopus.getCurentCat();
-      this.main.append(view.cat_template.replace(/({{image}})|({{cliks}})|({id})|({catname})/g,
-        function (str, m1, m2, m3, m4) {
-          if (m1) return 'img/' + curentCat.img + '.jpeg';
-          if (m2) return curentCat.click;
-          if (m3) return curentCat.id;
-          if (m4) return curentCat.name;
-        }));
-    }
+        var dbox = 'https://dl.dropboxusercontent.com/u/34136099/'
+        this.main.html('');
+        //this piece of code renders new cats every time event triggers
+        var curentCat = octopus.getCurentCat();
+        this.main.append(view.cat_template.replace(/({{image}})|({{cliks}})|({id})|({catname})/g,
+          function (str, m1, m2, m3, m4) {
+            if (m1) return dbox + curentCat.img + '.jpeg?raw=1';
+            if (m2) return curentCat.click;
+            if (m3) return curentCat.id;
+            if (m4) return curentCat.name;
+          }));
+        octopus.showAdmin();
+      } //render end
   };
   octopus.init();
 }());
