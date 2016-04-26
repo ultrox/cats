@@ -1,6 +1,6 @@
 (function () {
 
-  window.CatApp.view = { 
+  window.CatApp.view = {
     init: function () {
       this.cats = window.CatApp.octopus.getAllCats();
       this.cat_template = $('#tem').html();
@@ -45,6 +45,8 @@
           if (m3) return curentCat.id;
           if (m4) return curentCat.name;
         }));
+      window.CatApp.octopus.showAdmin();
+
     }
   };
 

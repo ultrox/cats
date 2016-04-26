@@ -25,7 +25,7 @@
       return window.CatApp.model.cats;
     },
 
-    openAdminView: function (catId) {
+    openAdminView: function () {
       //object of cat from model actually
       var cat = window.CatApp.octopus.getCurentCat();
 
@@ -33,24 +33,31 @@
       this.elements = this.control[0].elements;
 
       this.elements.catName.value = cat.name;
-      this.elements.catImage.value = 'cat_picture' + catId;
+      this.elements.catImage.value = cat.img;
       this.elements.catClicks.value = cat.click;
 
-      this.display = this.control[0].style.display;
-      if (this.display === 'none') {
-        this.control.show();
-      } else {
-        this.control.hide();
-      }
+      this.control.show();
+
+      window.CatApp.model.renderAdmin = true;
+
+
     },
 
     closeAdminView: function () {
       //ne treba referenca na cat jer admin mora biti otvoren
       this.control[0].reset();
       this.control.hide();
+      window.CatApp.model.renderAdmin = false;
+
+    },
+    showAdmin: function () {
+      if (window.CatApp.model.renderAdmin) {
+        window.CatApp.octopus.openAdminView();
+      }
     },
 
     updateAdminCat: function () {
+      console.log('update form');
       var elements = window.CatApp.adminView.adminControl[0].elements;
       var cat = window.CatApp.octopus.getCurentCat();
 
