@@ -47,7 +47,6 @@
     closeAdminView: function () {
       //ne treba referenca na cat jer admin mora biti otvoren
       this.control[0].reset();
-      console.log('fuck your life');
       this.control.hide();
     },
 
